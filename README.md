@@ -1,6 +1,10 @@
-# MUI Nested Menu Example
+# MUI Nested Menu
 
 This project showcases a nested menu using Material-UI components in ClojureScript with [Reagent Material-UI](https://github.com/arttuka/reagent-material-ui).
+
+![Example GIF](https://raw.githubusercontent.com/jramosg/jon-nested-menu/master/public/example.gif)
+
+
 
 ## Usage
 
@@ -22,14 +26,14 @@ To implement the nested menu, use the following code:
 
 ## Parameters
 
-- :button-props: Map of properties for the button that triggers the menu.
-  - :label: (String) The label displayed on the button.
+- button-props: Map of properties for the button that triggers the menu.
+  - label: (String) The label displayed on the button.
   - other [button props](https://v5.mui.com/material-ui/api/button/)
 
-- :items: Vector of menu item maps.
-  - :label: (String) Display label for the menu item.
-  - :callback: (Function) Function executed on click.
-  - :items: (Optional) Nested vector of submenu items, which can contain the same structure.
+- items: Vector of menu item maps.
+  - label: (String) Display label for the menu item.
+  - callback: (Function) Function executed on click.
+  - items: (Optional) Nested vector of submenu items, which can contain the same structure.
 
 
 ## css Styles
