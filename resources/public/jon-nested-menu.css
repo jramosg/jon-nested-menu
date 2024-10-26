@@ -1,0 +1,31 @@
+:root {
+  --rotate-transition: 0.3s ease;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+.nested-menu {
+  pointer-events: none;
+}
+
+.nested-menu .nested-menu-item {
+  pointer-events: auto;
+}
+
+.MuiButtonBase-root.MuiMenuItem-root:hover {
+  background-color: rgba(var(--jon-palette-primary-mainChannel) / var(--jon-palette-action-hoverOpacity));
+}
+
+.expand-group {
+  transform: rotate(0deg);
+}
+
+.expand-group.MuiSvgIcon-root {
+  transition: var(--rotate-transition);
+}
+
+.expand-group.expanded {
+  transform: rotate(180deg);
+}
