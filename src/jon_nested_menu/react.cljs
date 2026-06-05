@@ -1,13 +1,11 @@
 (ns jon-nested-menu.react
   "React-facing wrappers for npm consumers.
 
-  The components in `jon-nested-menu.variants.js-mui` are Reagent components
-  (they return hiccup, not React elements), so plain React apps can't render
-  them directly. This namespace exposes real React function components that
-  convert incoming JS props to ClojureScript and reactify the output.
+  Reagent components return hiccup, not React elements, so plain React apps
+  can't use them directly. Each wrapper converts JS props to ClojureScript
+  and calls `r/as-element` to produce a real React element.
 
-  CLJS/Reagent users should NOT use this namespace; require
-  `jon-nested-menu.nested-menu` instead."
+  CLJS/Reagent users: require `jon-nested-menu.nested-menu` instead."
   (:require [clojure.string :as str]
             [goog.object :as gobj]
             [reagent.core :as r]

@@ -1,8 +1,5 @@
 (ns jon-nested-menu.nested-menu
-  "Public API for jon-nested-menu.
-
-  Re-exports the Reagent + MUI components. This is the namespace you should
-  require from application code."
+  "Public API. Require this namespace from application code."
   (:require [jon-nested-menu.variants.js-mui :as impl]))
 
 (def ^:export nested-menu impl/nested-menu)

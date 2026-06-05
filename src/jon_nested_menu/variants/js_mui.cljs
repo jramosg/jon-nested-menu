@@ -2,8 +2,8 @@
   "Reagent + MUI implementation of the nested-menu components.
 
   Uses MUI subpath imports (e.g. @mui/material/Menu) instead of the barrel
-  `@mui/material` import so the library stays compatible across MUI v5, v6
-  and v7. The public API is re-exported from `jon-nested-menu.nested-menu`."
+  @mui/material, keeping it compatible across MUI v5–v9.
+  `jon-nested-menu.nested-menu` re-exports the public API."
   (:require [reagent.core :as r]
             ["@mui/material/Button" :default MuiButton]
             ["@mui/material/Menu" :default MuiMenu]
@@ -17,9 +17,7 @@
 ;; ---------------------------------------------------------------------------
 ;; Icons
 ;; ---------------------------------------------------------------------------
-;; Rendered with MUI `SvgIcon` so they inherit theme color/size and so the
-;; rotate animation in the bundled CSS (`.expand-group.MuiSvgIcon-root`)
-;; applies to the dropdown caret.
+;; Rendered with MUI `SvgIcon` so they inherit theme color and size.
 
 (defn chevron-right
   "Right-pointing chevron used as the default sub-menu indicator."
@@ -32,10 +30,9 @@
 
 (defn chevron-down
   "Down-pointing chevron used as the dropdown button end-icon. Pass
-  `:expanded?` true to rotate it 180deg. The rotation is applied with an
-  inline `:style` (not `sx`) so it works on every MUI version with no
-  external CSS; the `expand-group`/`expanded` classes are kept for optional
-  styling overrides."
+  `:expanded?` true to rotate it 180°. Rotation is inline `style`, not `sx`,
+  so it works on every MUI version. Use `.jnm-caret` / `.jnm-caret-expanded`
+  for optional class-based overrides."
   [{:keys [expanded?] :as props}]
   [:> MuiSvgIcon
    (-> props

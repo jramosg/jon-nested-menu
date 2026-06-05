@@ -8,12 +8,11 @@ A ClojureScript port (and superset) of
 arbitrarily deep nested menus, a right-click context menu, per-item icons,
 custom labels, keyboard navigation and selection state.
 
-- **Self-contained** — no external CSS required; the bits that must work
-  (pointer-events, caret rotation) are applied inline.
-- **Broad MUI support** — works with `@mui/material` v5, v6, v7, v8 and v9.
-  Uses MUI subpath imports and plain inline `style` (not `sx`) for its own
-  styling, so nothing depends on a specific MUI version.
-- **Two consumers** — published to **Clojars** (Reagent) and **npm** (React).
+- **Self-contained**: no external CSS required; pointer-events and caret
+  rotation are applied inline.
+- **Broad MUI support**: works with `@mui/material` v5–v9 via subpath imports
+  and inline `style` (not `sx`), so nothing depends on a specific MUI version.
+- **Two consumers**: published to **Clojars** (Reagent) and **npm** (React).
 
 ![Example GIF](https://raw.githubusercontent.com/jramosg/jon-nested-menu/master/public/example.gif)
 
@@ -65,7 +64,7 @@ and is optional from MUI v7 onward.
                    {:label "JSON" :callback (fn [_e _item] (prn "json"))}]}]}]
 ```
 
-No CSS import is needed, it works out of the box.
+No CSS import needed.
 
 ## Components
 
@@ -121,9 +120,8 @@ Every item passed to `:items` accepts:
 | `:sx` | map | Forwarded to the MUI `MenuItem` (MUI v5+ only). |
 | `:uid` | string | Stable React key (otherwise `:label`/index is used). |
 
-> Note: matching mui-nested-menu, clicking an item that *has children* opens
-> its sub-menu and does **not** fire its `:callback`. Only leaves invoke
-> `:callback`.
+Clicking an item with `:items` opens its sub-menu and skips `:callback`.
+Only leaf items invoke `:callback`.
 
 ### Icons example
 
@@ -141,13 +139,13 @@ Every item passed to `:items` accepts:
 
 ## React usage
 
-The npm build ships real React components (the Reagent components are
-reactified and their JS props are converted automatically — `buttonProps`
-becomes `:button-props`, `leftIcon` becomes `:left-icon`, and so on). Pass
-icons as JSX elements and `items` as plain objects.
+The npm build ships real React components. Reagent components are reactified
+and JS props convert automatically: `buttonProps` becomes `:button-props`,
+`leftIcon` becomes `:left-icon`, and so on. Pass icons as JSX elements and
+`items` as plain objects.
 
-The package is published as **dual ESM + CommonJS**, so named imports work
-directly in Vite/webpack/esbuild, and `require()` still works in Node:
+It ships as **dual ESM + CommonJS**: named imports work in Vite/webpack/esbuild
+and `require()` works in Node:
 
 ```jsx
 import { NestedMenu, ContextMenu } from 'jon-nested-menu';
@@ -177,11 +175,10 @@ example.
 
 ## Styling
 
-Nothing is required, the essential behaviour (sub-menu `pointer-events` and
-the dropdown caret rotation) is applied as inline `style`, so the components
-work with zero CSS on any MUI version.
+Nothing is required. Sub-menu `pointer-events` and the dropdown caret rotation
+are inline `style`, so the components work with zero CSS on any MUI version.
 
-For optional theming the following (namespaced) class hooks are emitted:
+The library emits these namespaced class hooks for optional theming:
 
 - `.jnm-menu` — every `Menu` rendered by the library (dropdown, sub-menus,
   context menu).
@@ -189,9 +186,9 @@ For optional theming the following (namespaced) class hooks are emitted:
 - `.jnm-menu-item` — each item that opens a sub-menu.
 - `.jnm-caret` / `.jnm-caret-expanded` — the dropdown caret.
 
-Per-item styling is best done with the `:sx` (MUI v5+) or `:style` keys on
-the item map; class overrides of the caret rotation need `!important` because
-the rotation is inline.
+Style individual items with `:sx` (MUI v5+) or `:style` on the item map.
+Overriding the caret rotation via class requires `!important` because the
+rotation is inline.
 
 ## Build & publish
 
@@ -205,8 +202,8 @@ npm publish
 ### Clojars (via Slim / tools.build)
 
 The library is published under the group `io.github.jramosg`, which Clojars
-auto-verifies for the GitHub user `jramosg` (the first deploy walks you
-through verification at https://clojars.org/verify/group). To publish your
+auto-verifies for the GitHub user `jramosg`. Clojars walks you through group
+verification on first deploy (https://clojars.org/verify/group). To publish your
 own fork, change `:lib` in the `:build` alias of `deps.edn` to your own
 group, e.g. `io.github.<your-user>/jon-nested-menu` or
 `net.clojars.<your-user>/jon-nested-menu`.
@@ -241,10 +238,8 @@ cd demo-react && npm install && npm run dev  # React + MUI
 
 ## Credits
 
-This library is a ClojureScript/Reagent port of
-[mui-nested-menu](https://github.com/steviebuilds/mui-nested-menu) by
-[steviebuilds](https://github.com/steviebuilds). Thanks for the original
-React implementation and API design.
+Port of [mui-nested-menu](https://github.com/steviebuilds/mui-nested-menu)
+by [steviebuilds](https://github.com/steviebuilds).
 
 ## License
 
