@@ -49,6 +49,9 @@ jobs:
       - name: Install root deps
         run: npm ci
 
+      - name: Run tests
+        run: npm test
+
       - name: Build npm library dist
         run: npm run release:library
 
