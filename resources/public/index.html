@@ -2,15 +2,151 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>
+      jon-nested-menu - Accessible Nested Menu Component for Reagent + MUI
+    </title>
+    <meta
+      name="description"
+      content="Open-source nested menu component for Reagent and Material UI. Includes two integration variants: reagent-material-ui wrappers and direct @mui JS interop."
+    />
+    <meta
+      name="keywords"
+      content="reagent, clojurescript, material ui, nested menu, dropdown menu, clojars, shadow-cljs, react, mui"
+    />
+    <meta name="author" content="Jon Ramos" />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://github.com/jramosg/jon-nested-menu" />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="jon-nested-menu - Accessible Nested Menu for Reagent + MUI"
+    />
+    <meta
+      property="og:description"
+      content="A reusable nested menu component for ClojureScript apps with Reagent and Material UI."
+    />
+    <meta
+      property="og:url"
+      content="https://github.com/jramosg/jon-nested-menu"
+    />
+    <meta property="og:site_name" content="jon-nested-menu" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="jon-nested-menu - Nested Menu Component for Reagent"
+    />
+    <meta
+      name="twitter:description"
+      content="Two integration variants: reagent-material-ui wrappers and direct @mui JS interop."
+    />
+
+    <meta name="theme-color" content="#182027" />
+    <meta name="color-scheme" content="light" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        "name": "jon-nested-menu",
+        "description": "Nested menu component for Reagent and Material UI with wrapper and direct JS interop variants.",
+        "codeRepository": "https://github.com/jramosg/jon-nested-menu",
+        "programmingLanguage": ["ClojureScript"],
+        "runtimePlatform": "Browser",
+        "license": "https://opensource.org/licenses/MIT",
+        "author": {
+          "@type": "Person",
+          "name": "Jon Ramos",
+          "url": "https://github.com/jramosg"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "jon-nested-menu demo",
+        "description": "Interactive demo of a nested menu component for Reagent + MUI.",
+        "applicationCategory": "DeveloperApplication",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+
     <link rel="stylesheet" href="jon-nested-menu.css" />
-    <title>jon-nested-menu</title>
   </head>
   <body>
-    <noscript>
-      jon-nested-menu is a JavaScript app. Please enable JavaScript to continue.
-    </noscript>
-    <div id="app"></div>
-    <script src="/js/compiled/app.js"></script>
+    <a class="skip-link" href="#app">Skip to main content</a>
+
+    <header class="hero" role="banner">
+      <div class="page-shell">
+        <p class="eyebrow">ClojureScript component library</p>
+        <h1>jon-nested-menu</h1>
+        <p class="lead">
+          Accessible nested menu component for Reagent and Material UI with two
+          production-ready integration variants.
+        </p>
+        <div class="hero-links">
+          <a
+            class="btn btn-primary"
+            href="https://github.com/jramosg/jon-nested-menu"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          >
+          <a
+            class="btn btn-secondary"
+            href="https://clojars.org/io.github.jramosg/jon-nested-menu"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Clojars</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main class="page-shell" id="app" role="main">
+      <noscript>
+        <article class="noscript-card">
+          <h2>About This Library</h2>
+          <p>
+            jon-nested-menu is a reusable nested dropdown component for
+            ClojureScript projects using Reagent and Material UI.
+          </p>
+          <h3>Integration Variants</h3>
+          <ul>
+            <li>
+              reagent-material-ui wrappers via
+              <strong>arttuka/reagent-material-ui</strong>
+            </li>
+            <li>
+              Direct <strong>@mui/*</strong> npm interop using
+              <strong>reagent.core/adapt-react-class</strong>
+            </li>
+          </ul>
+          <p>JavaScript is required to view the live interactive menu demo.</p>
+        </article>
+      </noscript>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="page-shell">
+        <p>
+          Built with ClojureScript, Reagent, and Material UI.
+          <a href="https://github.com/jramosg/jon-nested-menu">Source code</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/compiled/app.js"></script>
   </body>
 </html>

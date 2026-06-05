@@ -1,31 +1,224 @@
 :root {
-  --rotate-transition: 0.3s ease;
+  --bg: #f6f5ef;
+  --text: #1c1f24;
+  --muted: #5e6673;
+  --panel: #fffdf7;
+  --border: #dbd4c3;
+  --accent: #0f766e;
+  --accent-2: #134e4a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 10% 10%, #f8f3e1 0%, var(--bg) 45%),
+    linear-gradient(140deg, #f6f5ef 0%, #efe9db 100%);
+}
+
+a {
+  color: var(--accent-2);
+}
+
+.page-shell {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  background: #fff;
+  z-index: 50;
+}
+
+.hero {
+  border-bottom: 1px solid var(--border);
+  padding: 2.2rem 0 1.8rem;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-2);
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.hero h1 {
+  margin: 0.3rem 0 0;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.05;
+}
+
+.lead {
+  margin: 0.9rem 0 0;
+  max-width: 65ch;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.hero-links {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.65rem;
+}
+
+.btn {
+  display: inline-block;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  font-weight: 700;
+  padding: 0.52rem 0.95rem;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: transparent;
+  border-color: var(--accent-2);
+}
+
+#app {
+  min-height: 300px;
+  padding: 1.5rem 1rem 2rem;
+}
+
+.showcase {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.showcase-header h2 {
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 0;
+}
+
+.example-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+  padding: 1rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.example-card h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.example-copy {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.usage-code {
+  margin: 0;
+  background: #1c1f24;
+  color: #f5f6fa;
+  border-radius: 10px;
+  padding: 0.75rem;
+  overflow: auto;
+  font-size: 0.82rem;
+}
+
+.events {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+  padding: 0.9rem;
+}
+
+.events h3 {
+  margin: 0;
+}
+
+.clear-log {
+  margin-top: 0.65rem;
+  border: 1px solid var(--accent-2);
+  background: transparent;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  color: var(--accent-2);
+  cursor: pointer;
+}
+
+.event-list {
+  margin: 0.7rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.noscript-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--panel);
+  padding: 1rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1rem 0 1.4rem;
+  color: var(--muted);
+  font-size: 0.93rem;
 }
 
 .toolbar {
   display: flex;
-  justify-content: space-between;
-}
-.nested-menu {
-  pointer-events: none;
-}
-
-.nested-menu .nested-menu-item {
-  pointer-events: auto;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
 }
 
 .MuiButtonBase-root.MuiMenuItem-root:hover {
   background-color: rgba(var(--jon-palette-primary-mainChannel) / var(--jon-palette-action-hoverOpacity));
 }
 
-.expand-group {
-  transform: rotate(0deg);
-}
+@media (max-width: 700px) {
+  .hero {
+    padding-top: 1.4rem;
+  }
 
-.expand-group.MuiSvgIcon-root {
-  transition: var(--rotate-transition);
-}
+  .lead {
+    font-size: 0.96rem;
+  }
 
-.expand-group.expanded {
-  transform: rotate(180deg);
+  .showcase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toolbar {
+    justify-content: stretch;
+  }
 }
