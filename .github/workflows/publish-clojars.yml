@@ -1,0 +1,58 @@
+name: Publish to Clojars
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      snapshot:
+        description: Publish as snapshot
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Install Clojure CLI
+        uses: DeLaGuardo/setup-clojure@13.4
+        with:
+          cli: latest
+
+      - name: Cache Clojure deps
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.gitlibs
+            ~/.deps.clj
+          key: clj-${{ hashFiles('deps.edn') }}
+          restore-keys: clj-
+
+      - name: Publish to Clojars
+        env:
+          CLOJARS_USERNAME: ${{ secrets.CLOJARS_USERNAME }}
+          CLOJARS_PASSWORD: ${{ secrets.CLOJARS_PASSWORD }}
+          SNAPSHOT: ${{ github.event.inputs.snapshot || 'false' }}
+        run: |
+          if [ "$SNAPSHOT" = "true" ]; then
+            clojure -T:build deploy :snapshot true
+          else
+            clojure -T:build deploy
+          fi

@@ -1,0 +1,101 @@
+name: Deploy Demos to VPS
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            demo/package-lock.json
+            demo-react/package-lock.json
+
+      - name: Install Clojure
+        uses: DeLaGuardo/setup-clojure@13.4
+        with:
+          cli: latest
+
+      - name: Cache Clojure deps
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.gitlibs
+            ~/.deps.clj
+          key: clj-${{ hashFiles('deps.edn', 'demo/deps.edn') }}
+          restore-keys: clj-
+
+      - name: Install root deps
+        run: npm ci
+
+      - name: Build npm library dist
+        run: npm run release:library
+
+      - name: Build CLJS demo
+        working-directory: demo
+        run: |
+          npm ci
+          npm run build
+
+      - name: Build React demo
+        working-directory: demo-react
+        run: |
+          npm ci
+          npm run build
+
+      - name: Package demo artifacts
+        run: |
+          rm -rf deploy-bundle
+          mkdir -p deploy-bundle/cljs deploy-bundle/react
+          cp -R demo/public/. deploy-bundle/cljs/
+          cp -R demo-react/dist/. deploy-bundle/react/
+          tar -czf jon-nested-menu-demos.tar.gz -C deploy-bundle .
+
+      - name: Upload archive to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          source: jon-nested-menu-demos.tar.gz
+          target: /tmp/
+
+      - name: Extract and publish on VPS
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          DEPLOY_DIR: ${{ secrets.JON_NESTED_MENU_DEMO_DIR }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          envs: DEPLOY_DIR
+          script: |
+            mkdir -p "$DEPLOY_DIR"
+            rm -rf "$DEPLOY_DIR/cljs" "$DEPLOY_DIR/react"
+            mkdir -p "$DEPLOY_DIR/cljs" "$DEPLOY_DIR/react"
+            tar -xzf /tmp/jon-nested-menu-demos.tar.gz -C "$DEPLOY_DIR"
+            rm -f /tmp/jon-nested-menu-demos.tar.gz
+            echo "Deployed demos to $DEPLOY_DIR"
