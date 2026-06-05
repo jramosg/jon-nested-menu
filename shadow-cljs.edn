@@ -1,29 +1,34 @@
 {:nrepl {:port 8777}
 
-
-
- :source-paths ["src" "test"]
+ :source-paths ["src"]
 
  :dependencies
- [[reagent "1.1.1"]
-  [re-frame "1.4.2"]
-  [arttuka/reagent-material-ui "5.11.12-0"]
-
-  [binaryage/devtools "1.0.6"]]
-
- :dev-http
- {8280 "resources/public"
-  8290 "target/browser-test"}
+ [[reagent "1.2.0"]
+  [binaryage/devtools "1.0.7"]]
 
  :builds
- {:app
-  {:target     :browser
-   :output-dir "resources/public/js/compiled"
-   :asset-path "/js/compiled"
-   :modules
-   {:app {:init-fn jon-nested-menu.core/init}}
-   :devtools {:watch-dir "public"}
-   :dev
-   {:compiler-options
-    {:closure-defines
-     {}}}}}}
+ {;; CommonJS build (Node `require`, legacy bundlers).
+  :library
+  {:target :npm-module
+   :output-dir "dist/cjs"
+   :entries [jon-nested-menu.react
+             jon-nested-menu.nested-menu
+             jon-nested-menu.js-mui]
+   :exports {:NestedMenu jon-nested-menu.react/NestedMenu
+             :ContextMenu jon-nested-menu.react/ContextMenu
+             :NestedMenuItem jon-nested-menu.react/NestedMenuItem
+             :IconMenuItem jon-nested-menu.react/IconMenuItem
+             :ChevronRight jon-nested-menu.react/ChevronRight
+             :ChevronDown jon-nested-menu.react/ChevronDown}}
+
+  ;; ESM build (Vite/webpack/esbuild) — enables `import { NestedMenu } ...`.
+  :library-esm
+  {:target :esm
+   :output-dir "dist/esm"
+   :modules {:jon-nested-menu
+             {:exports {NestedMenu jon-nested-menu.react/NestedMenu
+                        ContextMenu jon-nested-menu.react/ContextMenu
+                        NestedMenuItem jon-nested-menu.react/NestedMenuItem
+                        IconMenuItem jon-nested-menu.react/IconMenuItem
+                        ChevronRight jon-nested-menu.react/ChevronRight
+                        ChevronDown jon-nested-menu.react/ChevronDown}}}}}}
