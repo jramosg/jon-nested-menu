@@ -3,7 +3,7 @@
  :source-paths ["src"]
 
  :dependencies
- [[reagent "1.2.0"]
+ [[reagent "2.0.0"]
   [binaryage/devtools "1.0.7"]]
 
  :builds
