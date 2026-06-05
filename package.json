@@ -1,19 +1,71 @@
 {
 	"name": "jon-nested-menu",
+	"version": "0.1.0",
+	"description": "Nested MUI menu components for Reagent/ClojureScript and React. Dropdown, context menu, icons, keyboard navigation. Compatible with MUI v5 through v9.",
+	"keywords": [
+		"mui",
+		"material-ui",
+		"nested-menu",
+		"dropdown",
+		"context-menu",
+		"reagent",
+		"clojurescript",
+		"react",
+		"menu"
+	],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jramosg/jon-nested-menu.git"
+	},
+	"homepage": "https://github.com/jramosg/jon-nested-menu",
+	"files": [
+		"dist",
+		"README.md",
+		"LICENSE"
+	],
+	"main": "dist/cjs/jon_nested_menu.react.js",
+	"module": "dist/esm/jon-nested-menu.js",
+	"exports": {
+		".": {
+			"import": "./dist/esm/jon-nested-menu.js",
+			"require": "./dist/cjs/jon_nested_menu.react.js"
+		},
+		"./*": "./dist/*"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
 		"ancient": "clojure -Sdeps '{:deps {com.github.liquidz/antq {:mvn/version \"RELEASE\"}}}' -m antq.core",
-		"watch": "npx shadow-cljs watch app browser-test karma-test",
-		"release": "npx shadow-cljs release app",
-		"build-report": "npx shadow-cljs run shadow.cljs.build-report app target/build-report.html"
+		"watch": "npx shadow-cljs watch library library-esm",
+		"release": "npx shadow-cljs release library library-esm",
+		"release:library": "npx shadow-cljs release library library-esm",
+		"demo:cljs": "cd demo && npm run start",
+		"demo:react": "npm run release:library && cd demo-react && npm i && npm run dev",
+		"build:npm": "npm run release:library",
+		"prepare": "npm run build:npm",
+		"build-report": "npx shadow-cljs run shadow.cljs.build-report library target/build-report.html"
 	},
-	"dependencies": {
-		"@emotion/react": "^11.13.3",
-		"@emotion/styled": "^11.13.0",
-		"@mui/material": "^6.1.5",
-		"react": "17.0.2",
-		"react-dom": "17.0.2"
+	"dependencies": {},
+	"peerDependencies": {
+		"@emotion/react": ">=11",
+		"@emotion/styled": ">=11",
+		"@mui/material": ">=5 <10",
+		"react": ">=17 <20",
+		"react-dom": ">=17 <20"
+	},
+	"peerDependenciesMeta": {
+		"@emotion/react": {
+			"optional": true
+		},
+		"@emotion/styled": {
+			"optional": true
+		}
 	},
 	"devDependencies": {
+		"react": "17.0.2",
+		"react-dom": "17.0.2",
 		"shadow-cljs": "2.26.2"
 	}
 }
