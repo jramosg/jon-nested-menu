@@ -1,4 +1,9 @@
-# jon-nested-menu
+# reagent-mui-nested-menu
+
+[![Clojars Project](https://img.shields.io/clojars/v/io.github.jramosg/reagent-mui-nested-menu.svg)](https://clojars.org/io.github.jramosg/reagent-mui-nested-menu)
+[![npm](https://img.shields.io/npm/v/reagent-mui-nested-menu.svg)](https://www.npmjs.com/package/reagent-mui-nested-menu)
+[![cljdoc](https://cljdoc.org/badge/io.github.jramosg/reagent-mui-nested-menu)](https://cljdoc.org/d/io.github.jramosg/reagent-mui-nested-menu)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Nested MUI menu components for **Reagent/ClojureScript** and **React**.
 
@@ -23,14 +28,14 @@ custom labels, keyboard navigation and selection state.
 `deps.edn`:
 
 ```clojure
-{:deps {io.github.jramosg/jon-nested-menu {:mvn/version "0.1.0"}
-        reagent/reagent {:mvn/version "1.2.0"}}}
+{:deps {io.github.jramosg/reagent-mui-nested-menu {:mvn/version "0.0.1"}
+        reagent/reagent {:mvn/version "2.0.0"}}}
 ```
 
 ### React (npm)
 
 ```bash
-npm install jon-nested-menu
+npm install reagent-mui-nested-menu
 ```
 
 ### Peer dependencies
@@ -54,7 +59,7 @@ and is optional from MUI v7 onward.
 
 ```clojure
 (ns my.app
-  (:require [jon-nested-menu.nested-menu :refer [nested-menu]]))
+  (:require [reagent-mui-nested-menu.core :refer [nested-menu]]))
 
 [nested-menu
  {:button-props {:label "Open"}
@@ -68,17 +73,17 @@ No CSS import needed.
 
 ## Components
 
-All components live in `jon-nested-menu.nested-menu` (the older
-`jon-nested-menu.js-mui` alias still works):
+All components live in the single public namespace
+`reagent-mui-nested-menu.core`:
 
-| Component | Purpose |
-|-----------|---------|
-| `nested-menu` | Dropdown button that opens a nested menu. |
-| `context-menu` | Wrap content so a right-click opens a nested menu at the pointer. |
-| `nested-menu-item` | A single menu item that opens a sub-menu (low-level). |
-| `icon-menu-item` | A single leaf menu item with optional icons (low-level). |
-| `menu-items-from-data` | Build a seq of menu elements from item data. |
-| `chevron-right` / `chevron-down` | The default MUI `SvgIcon` chevrons. |
+| Component                        | Purpose                                                           |
+| -------------------------------- | ----------------------------------------------------------------- |
+| `nested-menu`                    | Dropdown button that opens a nested menu.                         |
+| `context-menu`                   | Wrap content so a right-click opens a nested menu at the pointer. |
+| `nested-menu-item`               | A single menu item that opens a sub-menu (low-level).             |
+| `icon-menu-item`                 | A single leaf menu item with optional icons (low-level).          |
+| `menu-items-from-data`           | Build a seq of menu elements from item data.                      |
+| `chevron-right` / `chevron-down` | The default MUI `SvgIcon` chevrons.                               |
 
 ### `nested-menu` (dropdown)
 
@@ -106,19 +111,19 @@ All components live in `jon-nested-menu.nested-menu` (the older
 
 Every item passed to `:items` accepts:
 
-| Key | Type | Description |
-|-----|------|-------------|
-| `:label` | string | Item text. |
-| `:render-label` | `(fn [] hiccup)` | Custom label; takes precedence over `:label`. |
-| `:left-icon` | hiccup/element | Rendered before the label. |
-| `:right-icon` | hiccup/element | Rendered after the label (defaults to a chevron for sub-menus). |
-| `:callback` | `(fn [event item])` | Called when a **leaf** is clicked, then the menu closes. |
-| `:items` | vector | Child items — turns this entry into a sub-menu. |
-| `:disabled` | boolean | Disable the item. |
-| `:delay` | number | ms to hover before the sub-menu opens (default `0`). |
-| `:value` | any | Selection value; highlighted when it equals the root `:value`. |
-| `:sx` | map | Forwarded to the MUI `MenuItem` (MUI v5+ only). |
-| `:uid` | string | Stable React key (otherwise `:label`/index is used). |
+| Key             | Type                | Description                                                     |
+| --------------- | ------------------- | --------------------------------------------------------------- |
+| `:label`        | string              | Item text.                                                      |
+| `:render-label` | `(fn [] hiccup)`    | Custom label; takes precedence over `:label`.                   |
+| `:left-icon`    | hiccup/element      | Rendered before the label.                                      |
+| `:right-icon`   | hiccup/element      | Rendered after the label (defaults to a chevron for sub-menus). |
+| `:callback`     | `(fn [event item])` | Called when a **leaf** is clicked, then the menu closes.        |
+| `:items`        | vector              | Child items — turns this entry into a sub-menu.                 |
+| `:disabled`     | boolean             | Disable the item.                                               |
+| `:delay`        | number              | ms to hover before the sub-menu opens (default `0`).            |
+| `:value`        | any                 | Selection value; highlighted when it equals the root `:value`.  |
+| `:sx`           | map                 | Forwarded to the MUI `MenuItem` (MUI v5+ only).                 |
+| `:uid`          | string              | Stable React key (otherwise `:label`/index is used).            |
 
 Clicking an item with `:items` opens its sub-menu and skips `:callback`.
 Only leaf items invoke `:callback`.
@@ -148,7 +153,7 @@ It ships as **dual ESM + CommonJS**: named imports work in Vite/webpack/esbuild
 and `require()` works in Node:
 
 ```jsx
-import { NestedMenu, ContextMenu } from 'jon-nested-menu';
+import { NestedMenu, ContextMenu } from 'reagent-mui-nested-menu';
 
 const items = [
   { label: 'New file', callback: () => console.log('new') },
@@ -205,8 +210,8 @@ The library is published under the group `io.github.jramosg`, which Clojars
 auto-verifies for the GitHub user `jramosg`. Clojars walks you through group
 verification on first deploy (https://clojars.org/verify/group). To publish your
 own fork, change `:lib` in the `:build` alias of `deps.edn` to your own
-group, e.g. `io.github.<your-user>/jon-nested-menu` or
-`net.clojars.<your-user>/jon-nested-menu`.
+group, e.g. `io.github.<your-user>/reagent-mui-nested-menu` or
+`net.clojars.<your-user>/reagent-mui-nested-menu`.
 
 1. Create a Clojars account, then a **deploy token** at
    https://clojars.org/tokens (use the token as the password — never your
@@ -228,6 +233,15 @@ group, e.g. `io.github.<your-user>/jon-nested-menu` or
 
 Bump `:version` in the `:build` alias of `deps.edn` (and `deps.edn`'s
 install snippet above) for each release.
+
+## Tests
+
+Unit tests cover the data-driven menu builder (no DOM needed) and run on Node
+via shadow-cljs:
+
+```bash
+npm test   # npx shadow-cljs compile test && node target/node-tests.js
+```
 
 ## Demos
 

@@ -1,9 +1,12 @@
-(ns jon-nested-menu.variants.js-mui
-  "Reagent + MUI implementation of the nested-menu components.
+(ns reagent-mui-nested-menu.core
+  "Nested MUI menu components for Reagent.
+
+  Public API: `nested-menu` (dropdown), `context-menu` (right-click),
+  `nested-menu-item` / `icon-menu-item` (low-level), `menu-items-from-data`
+  (build menus from data) and the `chevron-right` / `chevron-down` icons.
 
   Uses MUI subpath imports (e.g. @mui/material/Menu) instead of the barrel
-  @mui/material, keeping it compatible across MUI v5–v9.
-  `jon-nested-menu.nested-menu` re-exports the public API."
+  @mui/material, keeping it compatible across MUI v5–v9."
   (:require [reagent.core :as r]
             ["@mui/material/Button" :default MuiButton]
             ["@mui/material/Menu" :default MuiMenu]

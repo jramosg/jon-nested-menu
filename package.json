@@ -1,6 +1,6 @@
 {
-	"name": "jon-nested-menu",
-	"version": "0.1.0",
+	"name": "reagent-mui-nested-menu",
+	"version": "0.0.1",
 	"description": "Nested MUI menu components for Reagent/ClojureScript and React. Dropdown, context menu, icons, keyboard navigation. Compatible with MUI v5 through v9.",
 	"keywords": [
 		"mui",
@@ -24,12 +24,12 @@
 		"README.md",
 		"LICENSE"
 	],
-	"main": "dist/cjs/jon_nested_menu.react.js",
-	"module": "dist/esm/jon-nested-menu.js",
+	"main": "dist/cjs/reagent_mui_nested_menu.react.js",
+	"module": "dist/esm/reagent-mui-nested-menu.js",
 	"exports": {
 		".": {
-			"import": "./dist/esm/jon-nested-menu.js",
-			"require": "./dist/cjs/jon_nested_menu.react.js"
+			"import": "./dist/esm/reagent-mui-nested-menu.js",
+			"require": "./dist/cjs/reagent_mui_nested_menu.react.js"
 		},
 		"./*": "./dist/*"
 	},
@@ -44,6 +44,7 @@
 		"demo:cljs": "cd demo && npm run start",
 		"demo:react": "npm run release:library && cd demo-react && npm i && npm run dev",
 		"build:npm": "npm run release:library",
+		"test": "npx shadow-cljs compile test && node target/node-tests.js",
 		"prepare": "npm run build:npm",
 		"build-report": "npx shadow-cljs run shadow.cljs.build-report library target/build-report.html"
 	},

@@ -1,6 +1,6 @@
 {:nrepl {:port 8777}
 
- :source-paths ["src"]
+ :source-paths ["src" "test"]
 
  :dependencies
  [[reagent "2.0.0"]
@@ -11,25 +11,33 @@
   :library
   {:target :npm-module
    :output-dir "dist/cjs"
-   :entries [jon-nested-menu.react
-             jon-nested-menu.nested-menu
-             jon-nested-menu.js-mui]
-   :exports {:NestedMenu jon-nested-menu.react/NestedMenu
-             :ContextMenu jon-nested-menu.react/ContextMenu
-             :NestedMenuItem jon-nested-menu.react/NestedMenuItem
-             :IconMenuItem jon-nested-menu.react/IconMenuItem
-             :ChevronRight jon-nested-menu.react/ChevronRight
-             :ChevronDown jon-nested-menu.react/ChevronDown}}
+   :entries [reagent-mui-nested-menu.react
+             reagent-mui-nested-menu.core]
+   :exports {:NestedMenu reagent-mui-nested-menu.react/NestedMenu
+             :ContextMenu reagent-mui-nested-menu.react/ContextMenu
+             :NestedMenuItem reagent-mui-nested-menu.react/NestedMenuItem
+             :IconMenuItem reagent-mui-nested-menu.react/IconMenuItem
+             :ChevronRight reagent-mui-nested-menu.react/ChevronRight
+             :ChevronDown reagent-mui-nested-menu.react/ChevronDown}}
 
   ;; ESM build (Vite/webpack/esbuild) — enables `import { NestedMenu } ...`.
+  ;; `:js-provider :import` keeps react/@mui/@emotion as external imports so
+  ;; the host app supplies a single React/MUI instance.
   :library-esm
   {:target :esm
    :js-options {:js-provider :import}
    :output-dir "dist/esm"
-   :modules {:jon-nested-menu
-             {:exports {NestedMenu jon-nested-menu.react/NestedMenu
-                        ContextMenu jon-nested-menu.react/ContextMenu
-                        NestedMenuItem jon-nested-menu.react/NestedMenuItem
-                        IconMenuItem jon-nested-menu.react/IconMenuItem
-                        ChevronRight jon-nested-menu.react/ChevronRight
-                        ChevronDown jon-nested-menu.react/ChevronDown}}}}}}
+   :modules
+   {:reagent-mui-nested-menu
+    {:exports {NestedMenu reagent-mui-nested-menu.react/NestedMenu
+               ContextMenu reagent-mui-nested-menu.react/ContextMenu
+               NestedMenuItem reagent-mui-nested-menu.react/NestedMenuItem
+               IconMenuItem reagent-mui-nested-menu.react/IconMenuItem
+               ChevronRight reagent-mui-nested-menu.react/ChevronRight
+               ChevronDown reagent-mui-nested-menu.react/ChevronDown}}}}
+
+  ;; Node test build — `npx shadow-cljs compile test && node target/...`.
+  :test
+  {:target :node-test
+   :output-to "target/node-tests.js"
+   :ns-regexp "-test$"}}}

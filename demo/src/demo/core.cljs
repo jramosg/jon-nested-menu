@@ -1,7 +1,7 @@
 (ns demo.core
   (:require [reagent.core :as r]
             [reagent.dom.client :as rdomc]
-            [jon-nested-menu.nested-menu :as nm]
+            [reagent-mui-nested-menu.core :as nm]
             ["@mui/material/styles" :as styles-js]))
 
 (defonce root* (atom nil))

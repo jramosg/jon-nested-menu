@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { NestedMenu, ContextMenu } from 'jon-nested-menu';
+import { NestedMenu, ContextMenu } from 'reagent-mui-nested-menu';
 import './styles.css';
 
 const REPO_URL = 'https://github.com/jramosg/jon-nested-menu';

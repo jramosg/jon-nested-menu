@@ -1,15 +1,15 @@
-(ns jon-nested-menu.react
+(ns reagent-mui-nested-menu.react
   "React-facing wrappers for npm consumers.
 
   Reagent components return hiccup, not React elements, so plain React apps
   can't use them directly. Each wrapper converts JS props to ClojureScript
   and calls `r/as-element` to produce a real React element.
 
-  CLJS/Reagent users: require `jon-nested-menu.nested-menu` instead."
+  CLJS/Reagent users: require `reagent-mui-nested-menu.core` instead."
   (:require [clojure.string :as str]
             [goog.object :as gobj]
             [reagent.core :as r]
-            [jon-nested-menu.variants.js-mui :as impl]))
+            [reagent-mui-nested-menu.core :as core]))
 
 (defn- react-element? [x]
   (and (object? x) (some? (gobj/get x "$$typeof"))))
@@ -45,7 +45,7 @@
       (string? (:direction m)) (update :direction keyword))))
 
 (defn ^:export NestedMenu [js-props]
-  (r/as-element [impl/nested-menu (prep js-props)]))
+  (r/as-element [core/nested-menu (prep js-props)]))
 
 (defn ^:export ContextMenu [js-props]
   (let [m (prep js-props)
@@ -55,21 +55,21 @@
                    (sequential? children) children
                    :else [children])]
     (r/as-element
-     (into [impl/context-menu (dissoc m :children)] children))))
+     (into [core/context-menu (dissoc m :children)] children))))
 
 (defn ^:export NestedMenuItem [js-props]
-  (r/as-element [impl/nested-menu-item (prep js-props)]))
+  (r/as-element [core/nested-menu-item (prep js-props)]))
 
 (defn ^:export IconMenuItem [js-props]
-  (r/as-element [impl/icon-menu-item (prep js-props)]))
+  (r/as-element [core/icon-menu-item (prep js-props)]))
 
 (defn ^:export ChevronRight [js-props]
-  (r/as-element [impl/chevron-right (js->props js-props)]))
+  (r/as-element [core/chevron-right (js->props js-props)]))
 
 (defn ^:export ChevronDown [js-props]
   ;; React passes `expanded`; the Reagent component expects `:expanded?`.
   (let [m (js->props js-props)]
     (r/as-element
-     [impl/chevron-down (cond-> m
+     [core/chevron-down (cond-> m
                           (contains? m :expanded)
                           (assoc :expanded? (:expanded m)))])))
