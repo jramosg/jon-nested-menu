@@ -4,6 +4,8 @@
 /*-init.clj
 /*.log
 
+.env
+
 # Leiningen
 /.lein-*
 /.nrepl-port
@@ -16,3 +18,9 @@
 /.lsp
 /.calva
 /.clj-kondo/.cache
+
+demo/node_modules/
+demo/js/dist/
+demo/.cpcache
+demo/.shadow-cljs/
+demo/public/js/
