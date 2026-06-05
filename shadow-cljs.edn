@@ -24,6 +24,7 @@
   ;; ESM build (Vite/webpack/esbuild) — enables `import { NestedMenu } ...`.
   :library-esm
   {:target :esm
+   :js-options {:js-provider :import}
    :output-dir "dist/esm"
    :modules {:jon-nested-menu
              {:exports {NestedMenu jon-nested-menu.react/NestedMenu
