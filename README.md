@@ -5,19 +5,16 @@
 [![cljdoc](https://cljdoc.org/badge/io.github.jramosg/reagent-mui-nested-menu)](https://cljdoc.org/d/io.github.jramosg/reagent-mui-nested-menu)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Nested MUI menu components for **Reagent/ClojureScript** and **React**.
-
-A ClojureScript port (and superset) of
+Nested MUI menus for **Reagent/ClojureScript** and **React**: a dropdown, a
+right-click context menu, per-item icons, custom labels and keyboard
+navigation. A ClojureScript port of
 [mui-nested-menu](https://github.com/steviebuilds/mui-nested-menu) by
-[steviebuilds](https://github.com/steviebuilds): a dropdown that opens
-arbitrarily deep nested menus, a right-click context menu, per-item icons,
-custom labels, keyboard navigation and selection state.
+[steviebuilds](https://github.com/steviebuilds).
 
-- **Self-contained**: no external CSS required; pointer-events and caret
-  rotation are applied inline.
-- **Broad MUI support**: works with `@mui/material` v5–v9 via subpath imports
-  and inline `style` (not `sx`), so nothing depends on a specific MUI version.
-- **Two consumers**: published to **Clojars** (Reagent) and **npm** (React).
+- **No CSS to import.** Pointer-events and the caret rotation ship inline.
+- **MUI v5 to v9.** Subpath imports and inline `style` keep it off any
+  version-specific API.
+- **Clojars and npm.** One source builds the Reagent jar and the React package.
 
 ![Example GIF](https://raw.githubusercontent.com/jramosg/jon-nested-menu/master/public/example.gif)
 
@@ -40,8 +37,8 @@ npm install reagent-mui-nested-menu
 
 ### Peer dependencies
 
-MUI and React are peers (you provide them). Emotion is required by MUI v5–v6
-and is optional from MUI v7 onward.
+MUI and React are peers (you provide them). MUI v5 and v6 need Emotion;
+v7 and later make it optional.
 
 ```json
 {
@@ -109,7 +106,7 @@ All components live in the single public namespace
 
 ### Item maps
 
-Every item passed to `:items` accepts:
+Each item map accepts:
 
 | Key             | Type                | Description                                                     |
 | --------------- | ------------------- | --------------------------------------------------------------- |
@@ -144,13 +141,12 @@ Only leaf items invoke `:callback`.
 
 ## React usage
 
-The npm build ships real React components. Reagent components are reactified
-and JS props convert automatically: `buttonProps` becomes `:button-props`,
-`leftIcon` becomes `:left-icon`, and so on. Pass icons as JSX elements and
-`items` as plain objects.
+The npm build wraps the Reagent components as real React components and
+converts your JS props: `buttonProps` becomes `:button-props`, `leftIcon`
+becomes `:left-icon`. Pass icons as JSX elements and `items` as plain objects.
 
-It ships as **dual ESM + CommonJS**: named imports work in Vite/webpack/esbuild
-and `require()` works in Node:
+The package ships dual ESM and CommonJS, so named imports work in
+Vite/webpack/esbuild and `require()` works in Node:
 
 ```jsx
 import { NestedMenu, ContextMenu } from 'reagent-mui-nested-menu';
