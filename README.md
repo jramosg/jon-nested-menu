@@ -89,12 +89,12 @@ All components live in the single public namespace
 
 ```clojure
 [nested-menu
- {:items        items        ;; vector of item maps (see below)
-  :label        "Actions"    ;; button text (or :label inside :button-props)
-  :button-props {...}         ;; props forwarded to MUI Button
-  :menu-props   {...}         ;; props forwarded to the root MUI Menu
-  :direction    :right        ;; :right (default) or :left
-  :value        :high         ;; currently selected value (highlights leaves)
+ {:items        items          ;; vector of item maps (see below)
+  :label        "Actions"      ;; button text (or :label inside :button-props)
+  :button-props {...}          ;; props forwarded to MUI Button
+  :menu-props   {...}          ;; props forwarded to the root MUI Menu
+  :direction    :right         ;; :right (default) or :left
+  :value        :high          ;; currently selected value (highlights leaves)
   :on-click     (fn [e] ...)}] ;; extra handler when the button is clicked
 ```
 
