@@ -16,7 +16,9 @@ navigation. A ClojureScript port of
   version-specific API.
 - **Clojars and npm.** One source builds the Reagent jar and the React package.
 
-![Example GIF](https://raw.githubusercontent.com/jramosg/jon-nested-menu/master/public/example.gif)
+**[Live demo →](https://jonramos.dev/demos/jon-nested-menu/cljs/)**
+
+[![Example GIF](https://raw.githubusercontent.com/jramosg/jon-nested-menu/master/public/example.gif)](https://jonramos.dev/demos/jon-nested-menu/cljs/)
 
 ## Install
 
