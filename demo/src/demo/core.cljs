@@ -7,8 +7,9 @@
 (defonce root* (atom nil))
 
 (def repo-url "https://github.com/jramosg/jon-nested-menu")
-(def clojars-url "https://clojars.org/io.github.jramosg/jon-nested-menu")
-(def npm-url "https://www.npmjs.com/package/jon-nested-menu")
+(def clojars-url
+  "https://clojars.org/io.github.jramosg/reagent-mui-nested-menu")
+(def npm-url "https://www.npmjs.com/package/reagent-mui-nested-menu")
 (def coffee-url "https://www.buymeacoffee.com/jramosg")
 
 ;; ---------------------------------------------------------------------------
@@ -283,7 +284,8 @@
 (defn- topbar []
   (let [dark? (= @theme* "dark")]
     [:div {:class "topbar"}
-     [:span {:class "brand"} [:span {:class "slash"} "//"] " jon-nested-menu"]
+     [:span {:class "brand"}
+      [:span {:class "slash"} "//"] " reagent-mui-nested-menu"]
      [:div {:class "topbar-links"}
       [top-link repo-url "GitHub" :github]
       [top-link clojars-url "Clojars" :package]
@@ -331,9 +333,9 @@
          [:span {:class "eyebrow"} "ClojureScript · Reagent · MUI"]
          [:h1 "Nested menus," [:br] [:span {:class "accent"} "from data."]]
          [:p {:class "lead"}
-          "A nested MUI menu library for Reagent and React — dropdowns, a "
-          "right-click context menu, per-item icons, custom labels, keyboard "
-          "navigation and selection state, all from plain ClojureScript data."]
+          "A nested MUI menu library for Reagent and React. Describe the menu "
+          "as plain ClojureScript data and render it as a dropdown or a "
+          "right-click context menu, with icons and keyboard navigation."]
          [:div {:class "hero-actions"}
           [nm/nested-menu
            {:button-props (button-props "File" :file "contained")
@@ -344,8 +346,9 @@
             :items (track account-items)}]]
          [:div {:class "install"}
           [:code [:span {:class "tok"} "clojars"]
-           " io.github.jramosg/jon-nested-menu"]
-          [:code [:span {:class "tok"} "npm i"] " jon-nested-menu"]]]
+           " io.github.jramosg/reagent-mui-nested-menu"]
+          [:code [:span {:class "tok"} "npm i"]
+           " reagent-mui-nested-menu"]]]
 
         [:section
          [:h2 {:class "section-title"} "Showcase"]
@@ -366,7 +369,7 @@
                             :items (track account-items)}]]
 
           [card {:title "Selection state"
-                 :blurb (str "Live selection — current: "
+                 :blurb (str "Click an item to set it. Current: "
                              (:label (priority-meta @priority*)) ".")
                  :snippet "[nested-menu {:items items\n              :value @priority*}]"}
            [nm/nested-menu
@@ -401,7 +404,7 @@
                                 :callback (cb "delayed")}]}])}]]
 
           [card {:title "Custom labels"
-                 :blurb "Render any hiccup as the label — titles, subtitles, badges."
+                 :blurb "Give an item :render-label to draw a custom title and subtitle."
                  :snippet "{:render-label\n (fn [] [:span ...title+subtitle...])}"}
            [nm/nested-menu {:button-props (button-props "Choose plan" :rocket
                                                         "outlined")
@@ -413,7 +416,7 @@
            [:h2 "Right-click context menu"]
            [:p {:class "card-blurb"}
             "context-menu wraps any content and opens at the pointer. "
-            "Delete is tinted via per-item :sx."]]
+            "Per-item :sx paints the Delete row red."]]
           [nm/context-menu {:items (track context-items)}
            [:div {:class "context-target"}
             [:div {:class "context-glow"}]
@@ -433,7 +436,7 @@
              [:li {:class "log-empty"} "interact with a menu to see events…"])]]]]
 
        [:footer {:class "footer"}
-        [:span "jon-nested-menu"]
+        [:span "reagent-mui-nested-menu"]
         [:span {:class "sep"} "·"]
         [:a {:href repo-url :target "_blank" :rel "noopener"} "GitHub"]
         [:span {:class "sep"} "·"]

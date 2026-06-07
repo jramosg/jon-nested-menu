@@ -5,8 +5,9 @@ import { NestedMenu, ContextMenu } from 'reagent-mui-nested-menu';
 import './styles.css';
 
 const REPO_URL = 'https://github.com/jramosg/jon-nested-menu';
-const CLOJARS_URL = 'https://clojars.org/io.github.jramosg/jon-nested-menu';
-const NPM_URL = 'https://www.npmjs.com/package/jon-nested-menu';
+const CLOJARS_URL =
+  'https://clojars.org/io.github.jramosg/reagent-mui-nested-menu';
+const NPM_URL = 'https://www.npmjs.com/package/reagent-mui-nested-menu';
 const COFFEE_URL = 'https://www.buymeacoffee.com/jramosg';
 
 // ---------------------------------------------------------------------------
@@ -293,7 +294,7 @@ const TopBar = ({ theme, onToggle }) => {
   return (
     <div className="topbar">
       <span className="brand">
-        <span className="slash">//</span> jon-nested-menu
+        <span className="slash">//</span> reagent-mui-nested-menu
       </span>
       <div className="topbar-links">
         <TopLink href={REPO_URL} label="GitHub" icon="github" />
@@ -357,9 +358,9 @@ function App() {
             <span className="accent">from data.</span>
           </h1>
           <p className="lead">
-            A nested MUI menu library for React and Reagent — dropdowns, a
-            right-click context menu, per-item icons, custom labels, keyboard
-            navigation and selection state, all from plain data.
+            A nested MUI menu library for React and Reagent. Describe the menu
+            as plain data and render it as a dropdown or a right-click context
+            menu, with icons and keyboard navigation.
           </p>
           <div className="hero-actions">
             <NestedMenu buttonProps={buttonProps('File', 'file', 'contained')} items={track(fileItems)} />
@@ -371,10 +372,10 @@ function App() {
           </div>
           <div className="install">
             <code>
-              <span className="tok">npm i</span> jon-nested-menu
+              <span className="tok">npm i</span> reagent-mui-nested-menu
             </code>
             <code>
-              <span className="tok">clojars</span> io.github.jramosg/jon-nested-menu
+              <span className="tok">clojars</span> io.github.jramosg/reagent-mui-nested-menu
             </code>
           </div>
         </header>
@@ -404,7 +405,7 @@ function App() {
 
             <Card
               title="Selection state"
-              blurb={`Live selection — current: ${PRIORITY[priority].label}.`}
+              blurb={`Click an item to set it. Current: ${PRIORITY[priority].label}.`}
               snippet={'<NestedMenu items={items}\n             value={priority} />'}
             >
               <NestedMenu
@@ -444,7 +445,7 @@ function App() {
 
             <Card
               title="Custom labels"
-              blurb="Render any node as the label — titles, subtitles, badges."
+              blurb="Give an item renderLabel to draw a custom title and subtitle."
               snippet={'{ renderLabel:\n  () => <span>title + subtitle</span> }'}
             >
               <NestedMenu buttonProps={buttonProps('Choose plan', 'rocket', 'outlined')} items={track(renderLabelItems)} />
@@ -457,8 +458,8 @@ function App() {
             <div className="card-head">
               <h2>Right-click context menu</h2>
               <p className="card-blurb">
-                ContextMenu wraps any content and opens at the pointer. Delete is
-                tinted via per-item sx.
+                ContextMenu wraps any content and opens at the pointer. Per-item
+                sx paints the Delete row red.
               </p>
             </div>
             <ContextMenu items={track(contextItems)}>
@@ -493,7 +494,7 @@ function App() {
       </div>
 
       <footer className="footer">
-        <span>jon-nested-menu</span>
+        <span>reagent-mui-nested-menu</span>
         <span className="sep">·</span>
         <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
           GitHub
