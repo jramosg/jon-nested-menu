@@ -1,4 +1,4 @@
-/* jon-nested-menu demo — matches the jonramos.dev GitHub/terminal aesthetic */
+/* reagent-mui-nested-menu demo. Matches the jonramos.dev terminal aesthetic. */
 
 :root {
   --color-bg: #fafbfc;
@@ -16,8 +16,8 @@
   --color-border-emphasis: rgba(31, 35, 40, 0.2);
   --grid-line: rgba(26, 127, 55, 0.05);
 
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
-    monospace;
+  --font-mono:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --font-serif: "Crimson Pro", Georgia, "Times New Roman", serif;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --max-width: 1080px;
@@ -57,7 +57,9 @@ body {
   background: var(--color-bg);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  transition: background 0.4s var(--ease-out-expo), color 0.4s var(--ease-out-expo);
+  transition:
+    background 0.4s var(--ease-out-expo),
+    color 0.4s var(--ease-out-expo);
 }
 
 /* terminal grid background */
@@ -67,7 +69,8 @@ body::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(circle at 50% 0%, #000 0%, transparent 75%);
@@ -270,7 +273,8 @@ a {
   border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 1.2rem;
-  transition: border-color 0.25s var(--ease-out-expo),
+  transition:
+    border-color 0.25s var(--ease-out-expo),
     transform 0.25s var(--ease-out-expo);
 }
 

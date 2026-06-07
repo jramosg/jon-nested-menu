@@ -118,7 +118,7 @@ Every item passed to `:items` accepts:
 | `:left-icon`    | hiccup/element      | Rendered before the label.                                      |
 | `:right-icon`   | hiccup/element      | Rendered after the label (defaults to a chevron for sub-menus). |
 | `:callback`     | `(fn [event item])` | Called when a **leaf** is clicked, then the menu closes.        |
-| `:items`        | vector              | Child items — turns this entry into a sub-menu.                 |
+| `:items`        | vector              | Child items that turn this entry into a sub-menu.               |
 | `:disabled`     | boolean             | Disable the item.                                               |
 | `:delay`        | number              | ms to hover before the sub-menu opens (default `0`).            |
 | `:value`        | any                 | Selection value; highlighted when it equals the root `:value`.  |
@@ -183,13 +183,12 @@ example.
 Nothing is required. Sub-menu `pointer-events` and the dropdown caret rotation
 are inline `style`, so the components work with zero CSS on any MUI version.
 
-The library emits these namespaced class hooks for optional theming:
+Target these namespaced class hooks for optional theming:
 
-- `.jnm-menu` — every `Menu` rendered by the library (dropdown, sub-menus,
-  context menu).
-- `.jnm-submenu` — additionally on nested sub-menu `Menu` elements.
-- `.jnm-menu-item` — each item that opens a sub-menu.
-- `.jnm-caret` / `.jnm-caret-expanded` — the dropdown caret.
+- `.jnm-menu`: every `Menu` the library renders.
+- `.jnm-submenu`: added on nested sub-menu `Menu` elements.
+- `.jnm-menu-item`: an item that opens a sub-menu.
+- `.jnm-caret` and `.jnm-caret-expanded`: the dropdown caret.
 
 Style individual items with `:sx` (MUI v5+) or `:style` on the item map.
 Overriding the caret rotation via class requires `!important` because the
@@ -214,7 +213,7 @@ group, e.g. `io.github.<your-user>/reagent-mui-nested-menu` or
 `net.clojars.<your-user>/reagent-mui-nested-menu`.
 
 1. Create a Clojars account, then a **deploy token** at
-   https://clojars.org/tokens (use the token as the password — never your
+   https://clojars.org/tokens (use the token as the password, not your
    account password).
 2. Export credentials:
 

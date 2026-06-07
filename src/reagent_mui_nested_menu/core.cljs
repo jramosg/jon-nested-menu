@@ -7,9 +7,6 @@
 
   Uses MUI subpath imports (e.g. @mui/material/Menu) instead of the barrel
   @mui/material, keeping it compatible across MUI v5–v9."
-  ;; Use the `module$default` + `:as` form (not shadow's `:default`) so the
-  ;; cljdoc analyzer — which uses the vanilla CLJS analyzer and only accepts
-  ;; :as/:refer/:rename — can parse this namespace.
   (:require [reagent.core :as r]
             ["@mui/material/Button$default" :as MuiButton]
             ["@mui/material/Menu$default" :as MuiMenu]
