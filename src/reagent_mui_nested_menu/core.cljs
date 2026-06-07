@@ -6,7 +6,7 @@
   (build menus from data) and the `chevron-right` / `chevron-down` icons.
 
   Uses MUI subpath imports (e.g. @mui/material/Menu) instead of the barrel
-  @mui/material, keeping it compatible across MUI v5–v9."
+  @mui/material, which keeps it compatible across MUI v5 to v9."
   (:require [reagent.core :as r]
             ["@mui/material/Button$default" :as MuiButton]
             ["@mui/material/Menu$default" :as MuiMenu]
@@ -34,7 +34,7 @@
 (defn chevron-down
   "Down-pointing chevron used as the dropdown button end-icon. Pass
   `:expanded?` true to rotate it 180°. Rotation is inline `style`, not `sx`,
-  so it works on every MUI version. Use `.jnm-caret` / `.jnm-caret-expanded`
+  so it works on any MUI version. Use `.jnm-caret` / `.jnm-caret-expanded`
   for optional class-based overrides."
   [{:keys [expanded?] :as props}]
   [:> MuiSvgIcon
@@ -78,7 +78,7 @@
   - `:ref`           ref callback for the underlying `li`
 
   The built-in layout uses an inline `:style` (not `sx`) so it renders
-  identically on every supported MUI version."
+  the same way on the supported MUI versions."
   [{:keys [label render-label left-icon right-icon on-click disabled selected
            style sx menu-item-props ref class]}]
   [:> MuiMenuItem
@@ -125,7 +125,7 @@
   navigation (ArrowRight enters the sub-menu, ArrowLeft returns to the
   parent) and a configurable open `:delay`.
 
-  In addition to every `icon-menu-item` option it accepts:
+  On top of the `icon-menu-item` options it accepts:
   - `:items`             child item maps (rendered recursively)
   - `:parent-menu-open?` whether the containing menu is open
   - `:close!`            zero-arg fn closing the whole menu tree (root)
