@@ -25,3 +25,6 @@ demo/js/dist/
 demo/.cpcache
 demo/.shadow-cljs/
 demo/public/js/
+demo/dist/
+/dist
+.DS_Store
