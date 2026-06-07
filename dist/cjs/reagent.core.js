@@ -1,2 +1,0 @@
-var window=global;var $CLJS=require("./cljs_env.js");require("./cljs.core.js");require("./shadow.js.shim.module$react.js");require("./reagent.impl.template.js");require("./reagent.impl.component.js");require("./reagent.impl.util.js");require("./reagent.impl.batching.js");require("./reagent.impl.protocols.js");require("./reagent.ratom.js");require("./reagent.debug.js");
-'use strict';
