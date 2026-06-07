@@ -68,182 +68,22 @@ v7 and later make it optional.
 
 No CSS import needed.
 
-## Components
+## Documentation
 
-All components live in the single public namespace
-`reagent-mui-nested-menu.core`:
+The full guide and the API reference live on
+[cljdoc](https://cljdoc.org/d/io.github.jramosg/reagent-mui-nested-menu):
 
-| Component                        | Purpose                                                           |
-| -------------------------------- | ----------------------------------------------------------------- |
-| `nested-menu`                    | Dropdown button that opens a nested menu.                         |
-| `context-menu`                   | Wrap content so a right-click opens a nested menu at the pointer. |
-| `nested-menu-item`               | A single menu item that opens a sub-menu (low-level).             |
-| `icon-menu-item`                 | A single leaf menu item with optional icons (low-level).          |
-| `menu-items-from-data`           | Build a seq of menu elements from item data.                      |
-| `chevron-right` / `chevron-down` | The default MUI `SvgIcon` chevrons.                               |
+- [Menus from data](doc/01-menus-from-data.md): components, item maps, nesting,
+  icons, selection and the context menu.
+- [React usage](doc/02-react-usage.md): the npm package and JSX examples.
+- [Styling](doc/03-styling.md): class hooks and per-item styles.
 
-### `nested-menu` (dropdown)
+Public API: the single namespace `reagent-mui-nested-menu.core`.
 
-```clojure
-[nested-menu
- {:items        items          ;; vector of item maps (see below)
-  :label        "Actions"      ;; button text (or :label inside :button-props)
-  :button-props {...}          ;; props forwarded to MUI Button
-  :menu-props   {...}          ;; props forwarded to the root MUI Menu
-  :direction    :right         ;; :right (default) or :left
-  :value        :high          ;; currently selected value (highlights leaves)
-  :on-click     (fn [e] ...)}] ;; extra handler when the button is clicked
-```
+## Development
 
-### `context-menu` (right-click)
-
-```clojure
-[context-menu
- {:items items}                ;; same item maps as nested-menu
- [:div {:style {:height 200}}
-  "Right-click anywhere in here"]]
-```
-
-### Item maps
-
-Each item map accepts:
-
-| Key             | Type                | Description                                                     |
-| --------------- | ------------------- | --------------------------------------------------------------- |
-| `:label`        | string              | Item text.                                                      |
-| `:render-label` | `(fn [] hiccup)`    | Custom label; takes precedence over `:label`.                   |
-| `:left-icon`    | hiccup/element      | Rendered before the label.                                      |
-| `:right-icon`   | hiccup/element      | Rendered after the label (defaults to a chevron for sub-menus). |
-| `:callback`     | `(fn [event item])` | Called when a **leaf** is clicked, then the menu closes.        |
-| `:items`        | vector              | Child items that turn this entry into a sub-menu.               |
-| `:disabled`     | boolean             | Disable the item.                                               |
-| `:delay`        | number              | ms to hover before the sub-menu opens (default `0`).            |
-| `:value`        | any                 | Selection value; highlighted when it equals the root `:value`.  |
-| `:sx`           | map                 | Forwarded to the MUI `MenuItem` (MUI v5+ only).                 |
-| `:uid`          | string              | Stable React key (otherwise `:label`/index is used).            |
-
-Clicking an item with `:items` opens its sub-menu and skips `:callback`.
-Only leaf items invoke `:callback`.
-
-### Icons example
-
-```clojure
-(:require ["@mui/icons-material/ContentCopy" :default CopyIcon]
-          [reagent.core :as r])
-
-[nested-menu
- {:label "Edit"
-  :items [{:label "Copy"
-           :left-icon (r/create-element CopyIcon)
-           :callback (fn [_e _item] (copy!))}
-          {:label "Disabled" :disabled true}]}]
-```
-
-## React usage
-
-The npm build wraps the Reagent components as real React components and
-converts your JS props: `buttonProps` becomes `:button-props`, `leftIcon`
-becomes `:left-icon`. Pass icons as JSX elements and `items` as plain objects.
-
-The package ships dual ESM and CommonJS, so named imports work in
-Vite/webpack/esbuild and `require()` works in Node:
-
-```jsx
-import { NestedMenu, ContextMenu } from 'reagent-mui-nested-menu';
-
-const items = [
-  { label: 'New file', callback: () => console.log('new') },
-  {
-    label: 'Export',
-    items: [
-      { label: 'PDF', callback: () => console.log('pdf') },
-      { label: 'JSON', disabled: true },
-    ],
-  },
-];
-
-<NestedMenu buttonProps={{ label: 'Open' }} items={items} direction="left" />
-
-<ContextMenu items={items}>
-  <div>Right-click here</div>
-</ContextMenu>
-```
-
-Named exports: `NestedMenu`, `ContextMenu`, `NestedMenuItem`, `IconMenuItem`,
-`ChevronRight`, `ChevronDown`. Props are camelCase (`buttonProps`, `menuProps`,
-`leftIcon`, `rightIcon`, `renderLabel`). See `demo-react/` for a runnable
-example.
-
-## Styling
-
-Nothing is required. Sub-menu `pointer-events` and the dropdown caret rotation
-are inline `style`, so the components work with zero CSS on any MUI version.
-
-Target these namespaced class hooks for optional theming:
-
-- `.jnm-menu`: every `Menu` the library renders.
-- `.jnm-submenu`: added on nested sub-menu `Menu` elements.
-- `.jnm-menu-item`: an item that opens a sub-menu.
-- `.jnm-caret` and `.jnm-caret-expanded`: the dropdown caret.
-
-Style individual items with `:sx` (MUI v5+) or `:style` on the item map.
-Overriding the caret rotation via class requires `!important` because the
-rotation is inline.
-
-## Build & publish
-
-### npm
-
-```bash
-npm run release:library   # builds dist/cjs (CommonJS) + dist/esm (ESM)
-npm publish
-```
-
-### Clojars (via Slim / tools.build)
-
-The library is published under the group `io.github.jramosg`, which Clojars
-auto-verifies for the GitHub user `jramosg`. Clojars walks you through group
-verification on first deploy (https://clojars.org/verify/group). To publish your
-own fork, change `:lib` in the `:build` alias of `deps.edn` to your own
-group, e.g. `io.github.<your-user>/reagent-mui-nested-menu` or
-`net.clojars.<your-user>/reagent-mui-nested-menu`.
-
-1. Create a Clojars account, then a **deploy token** at
-   https://clojars.org/tokens (use the token as the password, not your
-   account password).
-2. Export credentials:
-
-   ```bash
-   export CLOJARS_USERNAME=your-clojars-username
-   export CLOJARS_PASSWORD=your-deploy-token
-   ```
-
-3. Build and deploy:
-
-   ```bash
-   clojure -T:build build                   # build the jar locally (optional)
-   clojure -T:build deploy :snapshot true   # publish a -SNAPSHOT
-   clojure -T:build deploy                   # publish a release
-   ```
-
-Bump `:version` in the `:build` alias of `deps.edn` (and `deps.edn`'s
-install snippet above) for each release.
-
-## Tests
-
-Unit tests cover the data-driven menu builder (no DOM needed) and run on Node
-via shadow-cljs:
-
-```bash
-npm test   # npx shadow-cljs compile test && node target/node-tests.js
-```
-
-## Demos
-
-```bash
-cd demo && npm install && npm run start   # ClojureScript + Reagent
-cd demo-react && npm install && npm run dev  # React + MUI
-```
+Build, test, publish and demo instructions live in
+[DEVELOPMENT.md](https://github.com/jramosg/jon-nested-menu/blob/master/DEVELOPMENT.md).
 
 ## Credits
 
