@@ -71,7 +71,7 @@ jobs:
         run: |
           rm -rf deploy-bundle
           mkdir -p deploy-bundle/cljs deploy-bundle/react
-          cp -R demo/public/. deploy-bundle/cljs/
+          cp -R demo/dist/. deploy-bundle/cljs/
           cp -R demo-react/dist/. deploy-bundle/react/
           tar -czf jon-nested-menu-demos.tar.gz -C deploy-bundle .
 

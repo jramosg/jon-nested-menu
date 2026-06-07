@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "shadow-cljs watch app",
-    "build": "shadow-cljs release app"
+    "build": "shadow-cljs release app && node scripts/build-dist.mjs"
   },
   "devDependencies": {
     "shadow-cljs": "2.26.2"
