@@ -59,6 +59,19 @@ v7 and later make it optional.
 }
 ```
 
+### MUI v4 compatibility
+
+The library targets `@mui/material` (v5+). To use it in a project that only
+has `@material-ui/core` (v4), install an npm alias so `@mui/material`
+resolves to your existing v4 package:
+
+```bash
+npm install @mui/material@npm:@material-ui/core@^4 --legacy-peer-deps
+```
+
+This creates `node_modules/@mui/material` pointing at `@material-ui/core`,
+with no duplicate code. Emotion is not required for v4.
+
 ## Quick start (CLJS)
 
 ```clojure
