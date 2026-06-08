@@ -1,6 +1,6 @@
 {
 	"name": "reagent-mui-nested-menu",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"description": "Nested MUI menu components for Reagent/ClojureScript and React. Dropdown, context menu, icons, keyboard navigation. Compatible with MUI v5 through v9.",
 	"keywords": [
 		"mui",

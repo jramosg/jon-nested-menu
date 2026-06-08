@@ -9,7 +9,7 @@
   :build {:deps {io.github.abogoyavlensky/slim {:mvn/version "0.3.2"}
                  slipset/deps-deploy {:mvn/version "0.2.2"}}
           :ns-default slim.lib
-          :exec-args {:version "0.0.1"
+          :exec-args {:version "0.1.0"
                       :lib io.github.jramosg/reagent-mui-nested-menu
                       ;; Library ships sources only; resources/ holds demo and
                       ;; landing-page assets that must stay out of the jar.
