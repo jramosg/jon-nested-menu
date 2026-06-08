@@ -27,8 +27,8 @@ navigation. A ClojureScript port of
 `deps.edn`:
 
 ```clojure
-{:deps {io.github.jramosg/reagent-mui-nested-menu {:mvn/version "0.0.1"}
-        reagent/reagent {:mvn/version "2.0.0"}}}
+{:deps {io.github.jramosg/reagent-mui-nested-menu {:mvn/version "0.1.0"}
+        reagent/reagent {:mvn/version "2.0.1"}}}
 ```
 
 ### React (npm)

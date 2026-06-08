@@ -1,4 +1,4 @@
 {:paths ["src"]
  :deps {thheller/shadow-cljs {:mvn/version "2.26.2"}
-        reagent/reagent {:mvn/version "2.0.0"}
+        reagent/reagent {:mvn/version "2.0.1"}
         io.github.jramosg/reagent-mui-nested-menu {:local/root ".."}}}

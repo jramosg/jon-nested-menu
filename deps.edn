@@ -1,6 +1,6 @@
 {:paths ["src"]
 
- :deps {reagent/reagent {:mvn/version "2.0.0"}}
+ :deps {reagent/reagent {:mvn/version "2.0.1"}}
 
  :aliases
  {:dev {:extra-paths ["dev"]
