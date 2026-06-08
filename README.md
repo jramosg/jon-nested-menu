@@ -24,11 +24,16 @@ navigation. A ClojureScript port of
 
 ### ClojureScript (Clojars)
 
-`deps.edn`:
+#### Clojure CLI / deps.edn:
 
 ```clojure
-{:deps {io.github.jramosg/reagent-mui-nested-menu {:mvn/version "0.1.0"}
-        reagent/reagent {:mvn/version "2.0.1"}}}
+io.github.jramosg/reagent-mui-nested-menu {:mvn/version "0.1.0"}
+```
+
+#### Leiningen / Boot / shadow-cljs.edn:
+
+```clojure
+[io.github.jramosg/reagent-mui-nested-menu "0.1.0"]
 ```
 
 ### React (npm)
