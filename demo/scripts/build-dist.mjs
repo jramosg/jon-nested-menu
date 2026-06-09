@@ -55,4 +55,7 @@ const html = readFileSync(join(pub, 'index.html'), 'utf8')
   .replace('jon-nested-menu.css', cssName);
 writeFileSync(join(dist, 'index.html'), html);
 
+// 4b. Copy static, unhashed assets (favicon) referenced by index.html.
+copyFileSync(join(pub, 'favicon.svg'), join(dist, 'favicon.svg'));
+
 console.log(`build-dist: index.html -> js/${jsName}, ${cssName}`);

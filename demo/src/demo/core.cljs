@@ -19,10 +19,10 @@
 (defn- initial-theme []
   (or (.getItem js/localStorage "jnm-theme")
       (if (.. js/window
-              (matchMedia "(prefers-color-scheme: dark)")
+              (matchMedia "(prefers-color-scheme: light)")
               -matches)
-        "dark"
-        "light")))
+        "light"
+        "dark")))
 
 (defonce theme* (r/atom (initial-theme)))
 
@@ -36,15 +36,15 @@
     {:palette
      (if (= mode "dark")
        {:mode "dark"
-        :primary {:main "#7ee787" :contrastText "#0d1117"}
-        :background {:default "#0d1117" :paper "#161b22"}
-        :text {:primary "#e6edf3" :secondary "#aeb4bc"}
-        :divider "rgba(240,246,252,0.1)"}
+        :primary {:main "#5cb6b8" :contrastText "#06181a"}
+        :background {:default "#0a1020" :paper "#0e1626"}
+        :text {:primary "#f1f7fb" :secondary "#a3b0c4"}
+        :divider "rgba(214,233,240,0.1)"}
        {:mode "light"
-        :primary {:main "#1a7f37" :contrastText "#ffffff"}
-        :background {:default "#fafbfc" :paper "#ffffff"}
-        :text {:primary "#1f2328" :secondary "#57606a"}
-        :divider "rgba(31,35,40,0.1)"})
+        :primary {:main "#267879" :contrastText "#f1f8fb"}
+        :background {:default "#e8f2f7" :paper "#ffffff"}
+        :text {:primary "#0e1626" :secondary "#525d85"}
+        :divider "rgba(14,22,38,0.1)"})
      :shape {:borderRadius 8}
      :typography
      {:fontFamily "'JetBrains Mono', ui-monospace, monospace"
@@ -208,7 +208,7 @@
                      {:label "Payment methods" :left-icon (icon :card)
                       :callback (cb "payment")}]}]}
    {:label "Sign out" :left-icon (icon :logout)
-    :sx {:color "#f78166"} :callback (cb "sign-out")}])
+    :sx {:color "#f08562"} :callback (cb "sign-out")}])
 
 (def deep-items
   [{:label "Organization" :left-icon (icon :globe)
@@ -227,7 +227,7 @@
 (def render-label-items
   [{:left-icon (icon :rocket)
     :render-label (two-line "Pro plan" "Everything in Team, plus SSO"
-                            "popular" "#7ee787")
+                            "popular" "#5cb6b8")
     :callback (cb "pro")}
    {:left-icon (icon :zap)
     :render-label (two-line "Team plan" "Up to 20 collaborators" nil nil)
@@ -247,14 +247,14 @@
     :items [{:label "Rename" :left-icon (icon :edit) :callback (cb "rename")}
             {:label "Duplicate" :left-icon (icon :copy)
              :callback (cb "duplicate")}]}
-   {:label "Delete" :left-icon (icon :trash) :sx {:color "#f78166"}
+   {:label "Delete" :left-icon (icon :trash) :sx {:color "#f08562"}
     :right-icon (kbd "⌫") :callback (cb "ctx-delete")}])
 
 (def priority-meta
   {:low      {:label "Low"      :color "#3fb950"}
    :medium   {:label "Medium"   :color "#d29922"}
    :high     {:label "High"     :color "#db6d28"}
-   :critical {:label "Critical" :color "#f78166"}})
+   :critical {:label "Critical" :color "#f08562"}})
 
 ;; ---------------------------------------------------------------------------
 ;; UI
@@ -285,7 +285,8 @@
   (let [dark? (= @theme* "dark")]
     [:div {:class "topbar"}
      [:span {:class "brand"}
-      [:span {:class "slash"} "//"] " reagent-mui-nested-menu"]
+      [:img {:class "brand-mark" :src "favicon.svg" :alt "" :aria-hidden "true"}]
+      " reagent-mui-nested-menu"]
      [:div {:class "topbar-links"}
       [top-link repo-url "GitHub" :github]
       [top-link clojars-url "Clojars" :package]

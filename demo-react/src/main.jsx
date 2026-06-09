@@ -16,7 +16,7 @@ const COFFEE_URL = 'https://www.buymeacoffee.com/jramosg';
 
 const initialTheme = () =>
   localStorage.getItem('jnm-theme') ??
-  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
 
 const toggled = (t) => (t === 'dark' ? 'light' : 'dark');
 
@@ -26,17 +26,17 @@ const muiTheme = (mode) =>
       mode === 'dark'
         ? {
             mode: 'dark',
-            primary: { main: '#7ee787', contrastText: '#0d1117' },
-            background: { default: '#0d1117', paper: '#161b22' },
-            text: { primary: '#e6edf3', secondary: '#aeb4bc' },
-            divider: 'rgba(240,246,252,0.1)',
+            primary: { main: '#5cb6b8', contrastText: '#06181a' },
+            background: { default: '#0a1020', paper: '#0e1626' },
+            text: { primary: '#f1f7fb', secondary: '#a3b0c4' },
+            divider: 'rgba(214,233,240,0.1)',
           }
         : {
             mode: 'light',
-            primary: { main: '#1a7f37', contrastText: '#ffffff' },
-            background: { default: '#fafbfc', paper: '#ffffff' },
-            text: { primary: '#1f2328', secondary: '#57606a' },
-            divider: 'rgba(31,35,40,0.1)',
+            primary: { main: '#267879', contrastText: '#f1f8fb' },
+            background: { default: '#e8f2f7', paper: '#ffffff' },
+            text: { primary: '#0e1626', secondary: '#525d85' },
+            divider: 'rgba(14,22,38,0.1)',
           },
     shape: { borderRadius: 8 },
     typography: {
@@ -188,7 +188,7 @@ const accountItems = [
       },
     ],
   },
-  { label: 'Sign out', leftIcon: <Icon name="logout" />, sx: { color: '#f78166' } },
+  { label: 'Sign out', leftIcon: <Icon name="logout" />, sx: { color: '#f08562' } },
 ];
 
 const deepItems = [
@@ -227,7 +227,7 @@ const deepItems = [
 const renderLabelItems = [
   {
     leftIcon: <Icon name="rocket" />,
-    renderLabel: twoLine('Pro plan', 'Everything in Team, plus SSO', 'popular', '#7ee787'),
+    renderLabel: twoLine('Pro plan', 'Everything in Team, plus SSO', 'popular', '#5cb6b8'),
   },
   { leftIcon: <Icon name="zap" />, renderLabel: twoLine('Team plan', 'Up to 20 collaborators') },
   { leftIcon: <Icon name="user" />, renderLabel: twoLine('Free', 'For personal projects') },
@@ -245,14 +245,14 @@ const contextItems = [
       { label: 'Duplicate', leftIcon: <Icon name="copy" /> },
     ],
   },
-  { label: 'Delete', leftIcon: <Icon name="trash" />, sx: { color: '#f78166' }, rightIcon: <Kbd>⌫</Kbd> },
+  { label: 'Delete', leftIcon: <Icon name="trash" />, sx: { color: '#f08562' }, rightIcon: <Kbd>⌫</Kbd> },
 ];
 
 const PRIORITY = {
   low: { label: 'Low', color: '#3fb950' },
   medium: { label: 'Medium', color: '#d29922' },
   high: { label: 'High', color: '#db6d28' },
-  critical: { label: 'Critical', color: '#f78166' },
+  critical: { label: 'Critical', color: '#f08562' },
 };
 
 // ---------------------------------------------------------------------------
@@ -294,7 +294,8 @@ const TopBar = ({ theme, onToggle }) => {
   return (
     <div className="topbar">
       <span className="brand">
-        <span className="slash">//</span> reagent-mui-nested-menu
+        <img className="brand-mark" src="./favicon.svg" alt="" aria-hidden="true" />
+        reagent-mui-nested-menu
       </span>
       <div className="topbar-links">
         <TopLink href={REPO_URL} label="GitHub" icon="github" />

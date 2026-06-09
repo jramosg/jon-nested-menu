@@ -1,20 +1,21 @@
 /* reagent-mui-nested-menu demo. Matches the jonramos.dev terminal aesthetic. */
 
 :root {
-  --color-bg: #fafbfc;
-  --color-bg-elevated: #ffffff;
-  --color-bg-surface: #f3f4f6;
-  --color-text: #1f2328;
-  --color-text-muted: #57606a;
-  --color-text-subtle: #8b949e;
-  --color-primary: #1a7f37;
-  --color-primary-muted: rgba(26, 127, 55, 0.1);
-  --color-secondary: #0969da;
-  --color-accent: #cf222e;
-  --color-featured: #8250df;
-  --color-border: rgba(31, 35, 40, 0.1);
-  --color-border-emphasis: rgba(31, 35, 40, 0.2);
-  --grid-line: rgba(26, 127, 55, 0.05);
+  /* INK (navy) — the signature default ground, matching jonramos.dev */
+  --color-bg: #0a1020;
+  --color-bg-elevated: #0e1626;
+  --color-bg-surface: #131c2e;
+  --color-text: #f1f7fb;
+  --color-text-muted: #a3b0c4;
+  --color-text-subtle: #7384a0;
+  --color-primary: #5cb6b8;
+  --color-primary-muted: rgba(92, 182, 184, 0.15);
+  --color-secondary: #a9b1d1;
+  --color-accent: #f08562;
+  --color-featured: #f4bdce;
+  --color-border: rgba(214, 233, 240, 0.1);
+  --color-border-emphasis: rgba(214, 233, 240, 0.2);
+  --grid-line: rgba(92, 182, 184, 0.05);
 
   --font-mono:
     "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -23,21 +24,23 @@
   --max-width: 1080px;
 }
 
-[data-theme="dark"] {
-  --color-bg: #0d1117;
-  --color-bg-elevated: #161b22;
-  --color-bg-surface: #21262d;
-  --color-text: #e6edf3;
-  --color-text-muted: #aeb4bc;
-  --color-text-subtle: #6e7681;
-  --color-primary: #7ee787;
-  --color-primary-muted: rgba(126, 231, 135, 0.15);
-  --color-secondary: #58a6ff;
-  --color-accent: #f78166;
-  --color-featured: #d2a8ff;
-  --color-border: rgba(240, 246, 252, 0.1);
-  --color-border-emphasis: rgba(240, 246, 252, 0.2);
-  --grid-line: rgba(126, 231, 135, 0.045);
+/* SKY (pale blue) light ground. Muted/subtle tones are darkened from the
+   raw brand scale so small text clears WCAG AA contrast on the light bg. */
+[data-theme="light"] {
+  --color-bg: #e8f2f7;
+  --color-bg-elevated: #ffffff;
+  --color-bg-surface: #d6e9f0;
+  --color-text: #0e1626;
+  --color-text-muted: #525d85;
+  --color-text-subtle: #586480;
+  --color-primary: #267879;
+  --color-primary-muted: rgba(38, 120, 121, 0.1);
+  --color-secondary: #525d85;
+  --color-accent: #b8472b;
+  --color-featured: #823850;
+  --color-border: rgba(14, 22, 38, 0.1);
+  --color-border-emphasis: rgba(14, 22, 38, 0.2);
+  --grid-line: rgba(38, 120, 121, 0.05);
 }
 
 * {
@@ -112,11 +115,22 @@ a {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   font-family: var(--font-mono);
   font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: -0.01em;
   color: var(--color-text);
+}
+
+.brand-mark {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  display: block;
+  flex: 0 0 auto;
 }
 
 .brand .slash {
