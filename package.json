@@ -1,5 +1,5 @@
 {
-	"name": "reagent-mui-nested-menu",
+	"name": "@jramosg/reagent-mui-nested-menu",
 	"version": "0.1.0",
 	"description": "Nested MUI menu components for Reagent/ClojureScript and React. Dropdown, context menu, icons, keyboard navigation. Compatible with MUI v5 through v9.",
 	"keywords": [
@@ -48,7 +48,6 @@
 		"prepare": "npm run build:npm",
 		"build-report": "npx shadow-cljs run shadow.cljs.build-report library target/build-report.html"
 	},
-	"dependencies": {},
 	"peerDependencies": {
 		"@emotion/react": ">=11",
 		"@emotion/styled": ">=11",
@@ -68,5 +67,13 @@
 		"react": "^19.2.0",
 		"react-dom": "^19.2.0",
 		"shadow-cljs": "2.26.2"
-	}
+	},
+	"bugs": {
+		"url": "https://github.com/jramosg/jon-nested-menu/issues"
+	},
+	"directories": {
+		"doc": "doc",
+		"test": "test"
+	},
+	"author": "jramosg"
 }
