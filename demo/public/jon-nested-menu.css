@@ -126,9 +126,8 @@ a {
 }
 
 .brand-mark {
-  width: 26px;
-  height: 26px;
-  border-radius: 6px;
+  width: auto;
+  height: 22px;
   display: block;
   flex: 0 0 auto;
 }

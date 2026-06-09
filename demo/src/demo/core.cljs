@@ -285,7 +285,16 @@
   (let [dark? (= @theme* "dark")]
     [:div {:class "topbar"}
      [:span {:class "brand"}
-      [:img {:class "brand-mark" :src "favicon.svg" :alt "" :aria-hidden "true"}]
+      [:svg {:class "brand-mark" :viewBox "0 0 78 24"
+             :role "img" :aria-label "Jon Ramos" :fill "none"}
+       [:text {:x 39 :y 18 :text-anchor "middle"
+               :font-family "var(--font-mono)" :font-weight 700
+               :font-size 15}
+        [:tspan {:fill "currentColor"} "{"]
+        [:tspan {:fill "#5cb6b8"} ":J"]
+        [:tspan " "]
+        [:tspan {:fill "#f4bdce"} "\"R\""]
+        [:tspan {:fill "currentColor"} "}"]]]
       " reagent-mui-nested-menu"]
      [:div {:class "topbar-links"}
       [top-link repo-url "GitHub" :github]

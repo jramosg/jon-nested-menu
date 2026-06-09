@@ -294,7 +294,28 @@ const TopBar = ({ theme, onToggle }) => {
   return (
     <div className="topbar">
       <span className="brand">
-        <img className="brand-mark" src="./favicon.svg" alt="" aria-hidden="true" />
+        <svg
+          className="brand-mark"
+          viewBox="0 0 78 24"
+          role="img"
+          aria-label="Jon Ramos"
+          fill="none"
+        >
+          <text
+            x="39"
+            y="18"
+            textAnchor="middle"
+            fontFamily="var(--font-mono)"
+            fontWeight="700"
+            fontSize="15"
+          >
+            <tspan fill="currentColor">{'{'}</tspan>
+            <tspan fill="#5cb6b8">:J</tspan>
+            <tspan> </tspan>
+            <tspan fill="#f4bdce">"R"</tspan>
+            <tspan fill="currentColor">{'}'}</tspan>
+          </text>
+        </svg>
         reagent-mui-nested-menu
       </span>
       <div className="topbar-links">
