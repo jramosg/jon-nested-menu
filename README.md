@@ -1,7 +1,7 @@
 # reagent-mui-nested-menu
 
-[![Clojars Project](https://img.shields.io/clojars/v/io.github.jramosg/reagent-mui-nested-menu.svg)](https://clojars.org/io.github.jramosg/reagent-mui-nested-menu)
-[![npm](https://img.shields.io/npm/v/reagent-mui-nested-menu.svg)](https://www.npmjs.com/package/reagent-mui-nested-menu)
+[![Clojars Project](https://img.shields.io/clojars/v/io.github.jramosg/reagent-mui-nested-menu.svg?style=plastic)](https://clojars.org/io.github.jramosg/reagent-mui-nested-menu)
+[![npm](https://img.shields.io/npm/v/@jramosg/reagent-mui-nested-menu.svg?style=plastic)](https://www.npmjs.com/package/@jramosg/reagent-mui-nested-menu)
 [![cljdoc](https://cljdoc.org/badge/io.github.jramosg/reagent-mui-nested-menu)](https://cljdoc.org/d/io.github.jramosg/reagent-mui-nested-menu)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
