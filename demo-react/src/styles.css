@@ -79,6 +79,83 @@ body::before {
   mask-image: radial-gradient(circle at 50% 0%, #000 0%, transparent 75%);
 }
 
+/* aurora — drifting coastal colour pools behind the grid,
+   matching jonramos.dev */
+body::after {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      38% 30% at 18% 12%,
+      rgba(49, 153, 155, 0.13),
+      transparent 70%
+    ),
+    radial-gradient(
+      30% 26% at 85% 8%,
+      rgba(142, 152, 194, 0.1),
+      transparent 70%
+    ),
+    radial-gradient(
+      26% 22% at 75% 86%,
+      rgba(244, 189, 206, 0.05),
+      transparent 70%
+    );
+  filter: blur(40px);
+}
+
+[data-theme="light"] body::after {
+  background:
+    radial-gradient(
+      38% 30% at 18% 12%,
+      rgba(49, 153, 155, 0.12),
+      transparent 70%
+    ),
+    radial-gradient(
+      30% 26% at 85% 8%,
+      rgba(142, 152, 194, 0.14),
+      transparent 70%
+    ),
+    radial-gradient(
+      26% 22% at 75% 86%,
+      rgba(244, 189, 206, 0.16),
+      transparent 70%
+    );
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body::after {
+    animation: aurora-drift 26s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes aurora-drift {
+  from {
+    transform: translate3d(-2%, -1.5%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2%, 1.5%, 0) scale(1.06);
+  }
+}
+
+/* film grain — breaks up the flat digital surfaces */
+html::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+html[data-theme="light"]::after {
+  opacity: 0.035;
+}
+
 h1,
 h2,
 h3 {
