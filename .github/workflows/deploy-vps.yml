@@ -75,30 +75,27 @@ jobs:
           cp -R demo-react/dist/. deploy-bundle/react/
           tar -czf jon-nested-menu-demos.tar.gz -C deploy-bundle .
 
-      - name: Upload archive to VPS
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          port: ${{ secrets.VPS_PORT }}
-          source: jon-nested-menu-demos.tar.gz
-          target: /tmp/
-
-      - name: Extract and publish on VPS
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Deploy through the restricted CI gate
+        # The key can only run `deploy jon-nested-menu` on the server, which
+        # replaces the demos folder with the uploaded plain files.
         env:
-          DEPLOY_DIR: ${{ secrets.JON_NESTED_MENU_DEMO_DIR }}
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          port: ${{ secrets.VPS_PORT }}
-          envs: DEPLOY_DIR
-          script: |
-            mkdir -p "$DEPLOY_DIR"
-            rm -rf "$DEPLOY_DIR/cljs" "$DEPLOY_DIR/react"
-            mkdir -p "$DEPLOY_DIR/cljs" "$DEPLOY_DIR/react"
-            tar -xzf /tmp/jon-nested-menu-demos.tar.gz -C "$DEPLOY_DIR"
-            rm -f /tmp/jon-nested-menu-demos.tar.gz
-            echo "Deployed demos to $DEPLOY_DIR"
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          HOST_KEY: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEmoaMAZ9yKpppVl6J2NPsXsirLII1K5/FR47keXM215
+        run: |
+          set -eu
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy
+          chmod 600 ~/.ssh/deploy
+          echo "vps $HOST_KEY" > ~/.ssh/known_hosts
+          ssh -i ~/.ssh/deploy -o HostKeyAlias=vps \
+            -o StrictHostKeyChecking=yes "ci@$VPS_HOST" \
+            deploy jon-nested-menu < jon-nested-menu-demos.tar.gz
+
+      - name: Verify demos
+        run: |
+          set -eu
+          for demo in cljs react; do
+            curl -fsS --retry 5 --retry-delay 3 -o /dev/null \
+              "https://jonramos.dev/demos/jon-nested-menu/$demo/"
+          done
